@@ -7,27 +7,28 @@ class IconFactory {
         if (!this.icons[type]) {
             let img = document.createElement("img");
             img.src = this.getPath(type);
-            img.width = 30;
+            img.classList.add("icon");
             this.icons[type] = img;
         }
         return this.icons[type];
     }
 
     getPath(type) {
-    const icons = {
-        star: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
-        heart: "https://cdn-icons-png.flaticon.com/512/833/833472.png",
-        bell: "https://cdn-icons-png.flaticon.com/512/1827/1827392.png",
-        user: "https://cdn-icons-png.flaticon.com/512/1077/1077114.png",
-        search: "https://cdn-icons-png.flaticon.com/512/622/622669.png",
-        settings: "https://cdn-icons-png.flaticon.com/512/2099/2099058.png"
-    };
-    return icons[type];
-}
+        const icons = {
+            star: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
+            heart: "https://cdn-icons-png.flaticon.com/512/833/833472.png",
+            bell: "https://cdn-icons-png.flaticon.com/512/1827/1827392.png",
+            user: "https://cdn-icons-png.flaticon.com/512/1077/1077114.png",
+            search: "https://cdn-icons-png.flaticon.com/512/622/622669.png",
+            settings: "https://cdn-icons-png.flaticon.com/512/2099/2099058.png"
+        };
+        return icons[type];
+    }
 }
 
 const factory = new IconFactory();
 let allIcons = [];
+let chartInstance = null;
 
 function loadIcons() {
     const container = document.getElementById("iconContainer");
@@ -86,27 +87,33 @@ function updateCount() {
 function showPopup(type, src) {
     document.getElementById("popup").style.display = "block";
     document.getElementById("popupImg").src = src;
-    document.getElementById("popupText").innerText = type;
+    document.getElementById("popupText").innerText = "Icon Type: " + type;
 }
 
 function closePopup() {
     document.getElementById("popup").style.display = "none";
 }
 
-/* Dark mode */
+/* Dark Mode */
 function toggleDarkMode() {
     document.body.classList.toggle("dark");
 }
 
 /* Chart */
 function drawChart() {
-    new Chart(document.getElementById("memoryChart"), {
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+
+    const ctx = document.getElementById("memoryChart");
+
+    chartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ["Without Flyweight", "With Flyweight"],
             datasets: [{
-                label: "Memory Usage (objects)",
-                data: [1000, 2]
+                label: "Number of Objects",
+                data: [1000, Object.keys(factory.icons).length]
             }]
         }
     });

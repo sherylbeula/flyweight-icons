@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flyweight Icons Demo</title>
+    <title>Flyweight Icon Manager</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Flyweight Pattern - Icon Optimization</h2>
+<h1>Flyweight Pattern - Icon Dashboard</h1>
 
-<button onclick="loadIcons()">Load 1000 Icons</button>
+<div class="controls">
+    <input type="text" id="search" placeholder="Search icon type..." onkeyup="filterIcons()">
+    
+    <select id="filter" onchange="filterIcons()">
+        <option value="all">All</option>
+        <option value="star">Star</option>
+        <option value="heart">Heart</option>
+    </select>
+
+    <button onclick="loadIcons()">Load Icons</button>
+</div>
+
+<p id="count">Icons: 0</p>
 
 <div id="iconContainer"></div>
 
 <script src="script.js"></script>
-
 </body>
 </html>

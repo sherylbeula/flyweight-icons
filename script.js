@@ -7,7 +7,7 @@ class IconFactory {
         if (!this.icons[type]) {
             let img = document.createElement("img");
             img.src = this.getPath(type);
-            img.classList.add("icon");
+            img.width = 30;
             this.icons[type] = img;
         }
         return this.icons[type];
@@ -41,6 +41,8 @@ function loadIcons() {
         card.classList.add("icon-card");
         card.setAttribute("data-type", type);
 
+        card.onclick = () => showPopup(type, clone.src);
+
         card.appendChild(clone);
         container.appendChild(card);
 
@@ -48,6 +50,7 @@ function loadIcons() {
     }
 
     updateCount();
+    drawChart();
 }
 
 function filterIcons() {
@@ -59,10 +62,7 @@ function filterIcons() {
     allIcons.forEach(card => {
         let type = card.getAttribute("data-type");
 
-        let matchSearch = type.includes(search);
-        let matchFilter = (filter === "all" || type === filter);
-
-        if (matchSearch && matchFilter) {
+        if ((filter === "all" || type === filter) && type.includes(search)) {
             card.style.display = "block";
             visible++;
         } else {
@@ -75,4 +75,34 @@ function filterIcons() {
 
 function updateCount() {
     document.getElementById("count").innerText = "Icons: " + allIcons.length;
+}
+
+/* Popup */
+function showPopup(type, src) {
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("popupImg").src = src;
+    document.getElementById("popupText").innerText = type;
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+/* Dark mode */
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+/* Chart */
+function drawChart() {
+    new Chart(document.getElementById("memoryChart"), {
+        type: 'bar',
+        data: {
+            labels: ["Without Flyweight", "With Flyweight"],
+            datasets: [{
+                label: "Memory Usage (objects)",
+                data: [1000, 2]
+            }]
+        }
+    });
 }

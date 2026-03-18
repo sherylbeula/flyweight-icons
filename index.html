@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flyweight Icon Manager</title>
+    <title>Flyweight Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<h1><p style="color:white;">Efficient rendering of 1000+ icons using Flyweight Pattern</p></h1>
+<div class="navbar">
+    <h2>Flyweight Dashboard</h2>
+    <button onclick="toggleDarkMode()">🌙</button>
+</div>
+
+<h1>Icon Management System</h1>
+<p class="subtitle">Optimized using Flyweight Pattern</p>
 
 <div class="controls">
-    <input type="text" id="search" placeholder="Search icon type..." onkeyup="filterIcons()">
+    <input type="text" id="search" placeholder="Search..." onkeyup="filterIcons()">
     
     <select id="filter" onchange="filterIcons()">
         <option value="all">All</option>
@@ -17,12 +24,23 @@
         <option value="heart">Heart</option>
     </select>
 
-    <button onclick="loadIcons()">Load Icons</button>
+    <button onclick="loadIcons()">Load 1000 Icons</button>
 </div>
 
 <p id="count">Icons: 0</p>
 
+<canvas id="memoryChart"></canvas>
+
 <div id="iconContainer"></div>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span onclick="closePopup()">✖</span>
+        <img id="popupImg">
+        <p id="popupText"></p>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>

@@ -1,75 +1,76 @@
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Segoe UI';
     margin: 0;
-    color: #333;
+    background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
-h1 {
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
     color: white;
-    margin-top: 20px;
 }
 
+/* Controls */
 .controls {
     background: white;
     padding: 15px;
     margin: 20px auto;
     width: 80%;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
 }
 
-input, select {
+input, select, button {
     padding: 10px;
     margin: 5px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    width: 180px;
 }
 
 button {
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
     background: #667eea;
     color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    border: none;
 }
 
-button:hover {
-    background: #5a67d8;
-    transform: scale(1.05);
-}
-
-#count {
-    color: white;
-    font-size: 18px;
-    margin-top: 10px;
-}
-
+/* Icons */
 #iconContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, 70px);
-    justify-content: center;
     gap: 15px;
-    padding: 20px;
+    justify-content: center;
 }
 
 .icon-card {
     background: white;
-    border-radius: 15px;
     padding: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transition: 0.3s;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-.icon-card:hover {
-    transform: translateY(-5px) scale(1.05);
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
 }
 
-.icon {
-    width: 35px;
-    height: 35px;
+.popup-content {
+    background: white;
+    padding: 20px;
+    margin: 100px auto;
+    width: 200px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* Dark mode */
+.dark {
+    background: #121212;
+    color: white;
 }

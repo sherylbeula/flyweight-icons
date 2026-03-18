@@ -14,11 +14,16 @@ class IconFactory {
     }
 
     getPath(type) {
-        if (type === "star")
-            return "https://cdn-icons-png.flaticon.com/512/1828/1828884.png";
-        if (type === "heart")
-            return "https://cdn-icons-png.flaticon.com/512/833/833472.png";
-    }
+    const icons = {
+        star: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
+        heart: "https://cdn-icons-png.flaticon.com/512/833/833472.png",
+        bell: "https://cdn-icons-png.flaticon.com/512/1827/1827392.png",
+        user: "https://cdn-icons-png.flaticon.com/512/1077/1077114.png",
+        search: "https://cdn-icons-png.flaticon.com/512/622/622669.png",
+        settings: "https://cdn-icons-png.flaticon.com/512/2099/2099058.png"
+    };
+    return icons[type];
+}
 }
 
 const factory = new IconFactory();
@@ -29,7 +34,7 @@ function loadIcons() {
     container.innerHTML = "";
     allIcons = [];
 
-    let types = ["star", "heart"];
+    let types = ["star", "heart", "bell", "user", "search", "settings"];
 
     for (let i = 0; i < 1000; i++) {
         let type = types[Math.floor(Math.random() * types.length)];
